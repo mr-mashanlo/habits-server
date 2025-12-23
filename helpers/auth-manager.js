@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 import { ErrorManager } from './error-manager.js';
 
-export class SessionManager {
+export class AuthManager {
 
   issue = ( res, payload ) => {
     const token = jwt.sign( payload, process.env.SECRET_KEY, { expiresIn: '2h' } );

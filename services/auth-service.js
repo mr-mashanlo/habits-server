@@ -1,4 +1,4 @@
-export class SessionService {
+export class AuthService {
 
   constructor( databaseService, validatorManager, bcryptManager, documentManager ) {
     this.databaseService = databaseService;
