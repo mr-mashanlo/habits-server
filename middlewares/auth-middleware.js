@@ -10,7 +10,7 @@ export const authMiddleware = async ( req, res, next ) => {
     documentManager.throwIfNotExists( token, 'Token', 401 );
 
     const { id, exp } = authManager.verify( token );
-    req.user = { id };
+    req.user = id;
 
     const time = exp - Math.floor( Date.now() / 1000 );
     if ( time < 1800 ) authManager.issue( res, { id } );
