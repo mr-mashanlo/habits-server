@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 
 import { errorMiddleware } from './middlewares/error-middleware.js';
 import { authRouter } from './routers/auth-router.js';
+import { entryRouter } from './routers/entry-router.js';
 import { habitRouter } from './routers/habit-router.js';
 
 const app = express();
@@ -16,6 +17,7 @@ app.use( express.json() );
 
 app.use( '/auth', authRouter );
 app.use( '/habit', habitRouter );
+app.use( '/entry', entryRouter );
 
 app.use( errorMiddleware );
 

@@ -38,9 +38,9 @@ export class AuthController {
 
   refresh = async ( req, res, next ) => {
     try {
-      const { id } = req.user;
-      const { token, expired } = this.authManager.issue( res, { id } );
-      res.json( { id, token, expired } );
+      const user = req.user;
+      const { token, expired } = this.authManager.issue( res, { user } );
+      res.json( { user, token, expired } );
     } catch ( error ) {
       next( error );
     }
@@ -48,8 +48,8 @@ export class AuthController {
 
   me = async ( req, res, next ) => {
     try {
-      const { id } = req.user;
-      res.json( { id } );
+      const user = req.user;
+      res.json( { user } );
     } catch ( error ) {
       next( error );
     }

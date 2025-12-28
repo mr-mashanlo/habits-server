@@ -7,7 +7,7 @@ export const User = z.object( {
 } );
 
 export const UserSchema = new Schema( {
-  email: { type: String, unique: true, require: true, trim: true, lowercase: true },
+  email: { type: String, unique: true, require: true, trim: true, lowercase: true, index: true },
   password: { type: String, require: true, trim: true }
 } );
 
