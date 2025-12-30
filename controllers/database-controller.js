@@ -5,7 +5,7 @@ export class DatabaseController {
     this.validatorManager = validatorManager;
   };
 
-  getOne = async ( req, res, next ) => {
+  get = async ( req, res, next ) => {
     try {
       const { id } = req.params;
       const document = await this.databaseService.getOne( { _id: id } );
@@ -17,9 +17,9 @@ export class DatabaseController {
 
   getMany = async ( req, res, next ) => {
     try {
-      const { id } = req.user;
+      const user = req.user;
       const { limit = 10, page = 1, sort = 1 } = req.query;
-      const document = await this.databaseService.getMany( { user: id }, { limit: +limit, page: +page, sort: +sort } );
+      const document = await this.databaseService.getMany( { user }, { limit: +limit, page: +page, sort: +sort } );
       res.json( document );
     } catch ( error ) {
       next( error );
@@ -28,10 +28,10 @@ export class DatabaseController {
 
   create = async ( req, res, next ) => {
     try {
+      const user = req.user;
       const data = req.body;
-      const { id } = req.user;
       const validatedData = this.validatorManager.parse( data );
-      const document = await this.databaseService.create( { user: id, ...validatedData } );
+      const document = await this.databaseService.create( { user, ...validatedData } );
       res.json( document );
     } catch ( error ) {
       next( error );
